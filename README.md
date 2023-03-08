@@ -79,32 +79,6 @@ Edit `ldap` file to below.
 
 by [stackoverflow.com](https://stackoverflow.com/questions/40747952/freeradius-authentication-through-azure-active-directory)
 
-## Create/Edit user
-
-### user in `users` file
-
-Example creation.
-
-```bash
-foo@awas.lab Cleartext-Password := "foopasswd"
-  Service-Type = Administrative-User, Filter-Id += "Entrasys:mgmt=su:", Filter-Id += "Entrasys:version=1:mgmt=su:"
-```
-
-### user in directory
-
-PHP LDAP ADMIN:  
-Via web browser http://\<the docker host IP address\>:18080  
-![PHP LDAP ADMIN](./img/phpldapadmin.png "Log in to php ldap admin")  
-Password is `symbol`
-
-Apache Directory Studio:  
-Download from https://directory.apache.org/studio/
-![Apache Directory Studio connection](./img/ads01.png "Property Connection Network parameters")  
-To connect via ldaps uses port 636. ldap uses port 389.
-![Apache Directory Studio connection](./img/ads02.png "Property Connection Authentications")  
-password is `symbol`  
-It should connected and able to create/edit/delete user.
-
 ## See also
 
 [easy-rsa](https://github.com/OpenVPN/easy-rsa/) can quickly generate your certificates and keys.
