@@ -16,26 +16,20 @@ ldap {
 	#  - ldaps:// (LDAP over SSL)
 	#  - ldapi:// (LDAP over Unix socket)
 	#  - ldapc:// (Connectionless LDAP)
-	server = 'openldap'
-#	server = 'localhost'
-#	server = 'ldap.rrdns.example.org'
-#	server = 'ldap.rrdns.example.org'
+	server = 'ldap://authentik_ldap'
 
 	#  Port to connect on, defaults to 389, will be ignored for LDAP URIs.
-#	port = 389
-	port = 636
+	port = 3389
+#	port = 636
 
 	#  Administrator account for searching and possibly modifying.
 	#  If using SASL + KRB5 these should be commented out.
-#	identity = 'cn=admin,dc=example,dc=org'
-	identity = 'cn=admin,dc=awas,dc=lab'
-#	password = mypass
-	password = symbol
+	identity = '__LDAP_ADM_IDENTITY__'
+	password = '__LDAP_ADM_PASSWORD__'
 
 	#  Unless overridden in another section, the dn from which all
 	#  searches will start from.
-#	base_dn = 'dc=example,dc=org'
-	base_dn = 'dc=awas,dc=lab'
+	base_dn = '__LDAP_BASE_DN__'
 
 	#
 	#  You can run the 'ldapsearch' command line tool using the
@@ -207,7 +201,7 @@ ldap {
 		#  For Active Directory, you should use
 		#  "samaccountname=" instead of "uid="
 		#
-		filter = "(uid=%{%{Stripped-User-Name}:-%{User-Name}})"
+		filter = "(cn=%{%{Stripped-User-Name}:-%{User-Name}})"
 
 		#  For Active Directory nested group, you should comment out the previous 'filter = ...'
 		#  and use the below. Where 'group' is the group you are querying for.
@@ -587,7 +581,7 @@ ldap {
 	#
 	#	http://packages.networkradius.com
 	#
-	tls {
+#	tls {
 		# Set this to 'yes' to use TLS encrypted connections
 		# to the LDAP database by using the StartTLS extended
 		# operation.
@@ -598,7 +592,7 @@ ldap {
 #		start_tls = yes
 
 #		ca_file	= ${certdir}/cacert.pem
-		ca_file	= ${certdir}/ca.crt
+#		ca_file	= ${certdir}/ca.crt
 
 #		ca_path	= ${certdir}
 		ca_path	= ./
@@ -618,14 +612,14 @@ ldap {
 		#  on the contents of ldap.conf.
 
 #		require_cert	= 'demand'
-		require_cert	= 'never'
+#		require_cert	= 'never'
 
 		#
 		#  Minimum TLS version to accept. We STRONGLY recommend
 		#  setting this to "1.2"
 		#
 #		tls_min_version = "1.2"
-	}
+#	}
 
 	#  As of version 3.0, the 'pool' section has replaced the
 	#  following configuration items:
