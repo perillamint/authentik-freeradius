@@ -12,13 +12,17 @@ services:
       start_period: 10s
     environment:
       AUTHENTIK_HOST: https://auth.example.com
-      AUTHENTIK_TOKEN: [REDACTED]
+      AUTHENTIK_TOKEN: '[REDACTED]'
       AUTHENTIK_LISTEN__METRICS: 0.0.0.0:9300
   freeradius:
     build:
       context: ./
       dockerfile: Dockerfile
     restart: unless-stopped
+    environment:
+      LDAP_BASE_DN: 'ou=users,dc=auth,dc=example,dc=com'
+      LDAP_ADM_IDENTITY: 'cn=ldapsvc,ou=users,dc=auth,dc=example,dc=com'
+      LDAP_ADM_PASSWORD: '[REDACTED]'
     volumes:
       - /etc/letsencrypt/live/radius.example.com/fullchain.pem:/etc/raddb/certs/server.crt:ro
       - /etc/letsencrypt/live/radius.example.com/privkey.pem:/etc/raddb/certs/server.key:ro
