@@ -11,11 +11,11 @@ RUN rm -rf /etc/raddb/certs && \
 RUN mkdir -p /etc/raddb/template/
 
 COPY freeradius/radiusd.conf clients.conf /etc/raddb/
-COPY freeradius/eap /etc/raddb/mods-available
+COPY freeradius/mods/eap /etc/raddb/mods-available
 COPY freeradius/ldap.template /etc/raddb/template/
 
-COPY freeradius/site /etc/raddb/sites-available
-COPY freeradius/inner-tunnel /etc/raddb/sites-available
+COPY freeradius/sites/site /etc/raddb/sites-available
+COPY freeradius/sites/inner-tunnel /etc/raddb/sites-available
 COPY freeradius/users /etc/raddb/mods-config/files/authorize
 COPY freeradius/entrypoint.sh /entrypoint.sh
 
