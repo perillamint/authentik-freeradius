@@ -1,6 +1,7 @@
 eap {
-
 	default_eap_type = ttls
+
+	proxy_tunneld_request_as_eap = yes
 
 	tls-config tls-common {
 
@@ -23,8 +24,10 @@ eap {
 		staple {
 			enable = yes
 		}
+
 		ocsp {
 		   enable = yes
+		   lifetime = 24
 		   override_cert_url = no
 		}
 
@@ -38,9 +41,10 @@ eap {
 	ttls {
 		tls = tls-common
 		default_eap_type = pap
-		copy_request_to_tunnel = no
-		use_tunneled_reply = no
+		copy_request_to_tunnel = yes
+		#use_tunneled_reply = yes
 		include_length = yes
 		virtual_server = "inner-tunnel"
+		#virtual_server = "proxy-inner-tunnel"
 	}
 }

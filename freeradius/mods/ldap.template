@@ -95,7 +95,7 @@ ldap {
 	#  	<value>:	Is the value to parse into the new valuepair.
 	# 			If the value is wrapped in double quotes it
 	#			will be xlat expanded.
-#	valuepair_attribute = 'radiusAttribute'
+	#valuepair_attribute = 'radiusAttribute'
 
 	#
 	#  Mapping of LDAP directory attributes to RADIUS dictionary attributes.
@@ -214,7 +214,7 @@ ldap {
 		#
 		#  See: https://social.technet.microsoft.com/wiki/contents/articles/5392.active-directory-ldap-syntax-filters.aspx
 		#
-#		filter = "(&(objectClass=user)(sAMAccountName=%{%{Stripped-User-Name}:-%{User-Name}})(memberOf:1.2.840.113556.1.4.1941:=cn=group,${..base_dn}))"
+		#filter = "(&(objectClass=user)(sAMAccountName=%{%{Stripped-User-Name}:-%{User-Name}})(memberOf:1.2.840.113556.1.4.1941:=cn=group,${..base_dn}))"
 
 		#  SASL parameters to use for user binds
 		#

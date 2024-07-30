@@ -12,18 +12,20 @@ RUN mkdir -p /etc/raddb/template/
 
 COPY freeradius/radiusd.conf clients.conf /etc/raddb/
 COPY freeradius/mods/eap /etc/raddb/mods-available
-COPY freeradius/ldap.template /etc/raddb/template/
+COPY freeradius/mods/ldap.template /etc/raddb/template/
 
 COPY freeradius/sites/site /etc/raddb/sites-available
 COPY freeradius/sites/inner-tunnel /etc/raddb/sites-available
+COPY freeradius/sites/proxy-inner-tunnel /etc/raddb/sites-available
 COPY freeradius/users /etc/raddb/mods-config/files/authorize
 COPY freeradius/entrypoint.sh /entrypoint.sh
 
 RUN rm /etc/raddb/sites-enabled/* && \
-    ln -s /etc/raddb/mods-available/ldap /etc/raddb/mods-enabled/ldap && \
     ln -s /etc/raddb/sites-available/site /etc/raddb/sites-enabled/site && \
+    ln -s /etc/raddb/mods-available/ldap /etc/raddb/mods-enabled/ldap && \
     ln -s /etc/raddb/sites-available/inner-tunnel /etc/raddb/sites-enabled/inner-tunnel && \
     mkdir /tmp/radiusd
+    #ln -s /etc/raddb/sites-available/proxy-inner-tunnel /etc/raddb/sites-enabled/proxy-inner-tunnel && \
 
 WORKDIR /
 
