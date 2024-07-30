@@ -33,4 +33,4 @@ EXPOSE 1812/udp
 
 ENTRYPOINT ["/entrypoint.sh"]
 
-CMD ["-d", "/etc/raddb", "-X", "-f"]
+CMD ["-d", "/etc/raddb", "-f"]
